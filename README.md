@@ -1,3 +1,3 @@
 # sprays
-This is very simple animation made on js
-You can see check this [here](http://sprays.epizy.com)
+This is very simple animation made on js <br/>
+You can check it [here](http://sprays.epizy.com)
