@@ -1,0 +1,62 @@
+<html>
+<head>
+ <style>
+  .spray {
+     transform: rotate(180deg);
+	 transition: all .03s ease-in;
+   }
+  .sprays {
+     width:98%;
+	 height:98%;
+     margin:5px;
+  }
+  .position-absolute {
+     position:absolute;
+  }
+ </style>
+</head>
+<body>
+
+<div class='sprays'>
+ <div class='position-absolute' style = 'right:.5rem;bottom:.5rem;' id='sprays-area'>
+     <img src='images/spray-6.png' class='spray' id='spray999' style='opacity:0'/>
+ </div>
+</div>
+
+<script src='js/spray.js'></script>
+<script src='js/custom.js'></script>
+<script>
+    let sprays = []
+        
+        function moveAway(i){
+            sprays[i].moveAway()
+        }
+        
+        function slowDown(i){
+            sprays[i].slowDown()
+        }
+
+        function createSpray(i, p){
+            let spray = new Spray()
+            sprays.push(spray)
+            spray.create([`images/spray-${i}.png`, `spray${i}`,'sprays-area'])
+            spray.addRoute([300, 2.5, -1, 1, 1, 1, -75, p])
+            spray.start()
+
+            tout(() => {
+               $1(`spray${i}`).setAttribute('onmouseover', `moveAway(${i})`)
+               $1(`spray${i}`).setAttribute('onmouseout', `slowDown(${i})`)
+            },200)
+        }
+
+        function createSprays(n){
+            for (let i=0; i<n; i++){
+                createSpray(i, (i+1)*100 / n)
+            }
+        }
+		
+        createSprays(6)
+</script>
+
+</body>
+</html>
